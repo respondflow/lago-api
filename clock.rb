@@ -95,11 +95,12 @@ module Clockwork
       .perform_later
   end
 
-  every(1.hour, 'schedule:top_up_wallet_interval_credits', at: '*:55') do
-    Clock::CreateIntervalWalletTransactionsJob
-      .set(sentry: {"slug" => 'lago_top_up_wallet_interval_credits', "cron" => '55 */1 * * *'})
-      .perform_later
-  end
+  # NT-591/expensive-and-broken-lago-query: commenting out so this job isn't scheduled -- volt does not use this feature
+  # every(1.hour, 'schedule:top_up_wallet_interval_credits', at: '*:55') do
+  #   Clock::CreateIntervalWalletTransactionsJob
+  #     .set(sentry: {"slug" => 'lago_top_up_wallet_interval_credits', "cron" => '55 */1 * * *'})
+  #     .perform_later
+  # end
 
   every(1.day, 'schedule:clean_webhooks', at: '01:00') do
     Clock::WebhooksCleanupJob
