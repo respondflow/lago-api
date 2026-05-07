@@ -1,4 +1,4 @@
-# Lago API  
+# Lago API 
 
 Lago is an open-source Stripe Billing alternative.
 
